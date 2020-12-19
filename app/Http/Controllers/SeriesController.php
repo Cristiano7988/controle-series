@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Serie;
+use Illuminate\Http\Request as HttpRequest;
+
 class SeriesController extends Controller {
 
 
-    function index() {
+    public function index() {
         $series = [
             'Lost',
             'Heroes'
@@ -14,8 +17,16 @@ class SeriesController extends Controller {
         return  view('series.index')->with(compact('series'));
     }
 
-    function create() {
+    public function create() {
         return view('series.create');
+    }
+
+    public function store(HttpRequest $request) {
+        $nome = $request->nome;
+        
+        $serie = new Serie();
+        $serie->nome = $nome;
+        $serie->save();
     }
 
 }
