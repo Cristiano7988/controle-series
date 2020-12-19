@@ -14,4 +14,8 @@ class SeriesController extends Controller {
         return  view('series.index')->with(compact('series'));
     }
 
+    function create() {
+        return view('series.create');
+    }
+
 }
