@@ -8,7 +8,7 @@
     <a href="/series/criar">Adicionar</a>
     <ul>
         @foreach ($series as $serie)
-            <li> {{ $serie }} </li>
+            <li> {{ $serie->nome }} </li>
         @endforeach
     </ul>
 @endsection

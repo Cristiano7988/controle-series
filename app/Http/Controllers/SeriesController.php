@@ -9,10 +9,7 @@ class SeriesController extends Controller {
 
 
     public function index() {
-        $series = [
-            'Lost',
-            'Heroes'
-        ];
+        $series = Serie::all();
 
         return  view('series.index')->with(compact('series'));
     }
@@ -24,9 +21,9 @@ class SeriesController extends Controller {
     public function store(HttpRequest $request) {
         $nome = $request->nome;
         
-        $serie = new Serie();
-        $serie->nome = $nome;
-        $serie->save();
+        $serie = Serie::create($request->all());
+
+        echo "Série com o id {$serie->id} criada: {$serie->nome}";
     }
 
 }
