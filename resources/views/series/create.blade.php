@@ -5,6 +5,13 @@
 @endsection
 
 @section('conteudo')
+@if($errors->any())
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
     <form method="post">
         @csrf
         <label for="nome">Nome</label>
