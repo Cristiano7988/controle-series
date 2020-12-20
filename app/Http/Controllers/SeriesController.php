@@ -8,10 +8,11 @@ use Illuminate\Http\Request as HttpRequest;
 class SeriesController extends Controller {
 
 
-    public function index() {
-        $series = Serie::all();
+    public function index(HttpRequest $request) {
+        $series = Serie::query()->orderBy('nome')->get();
+        $mensagem = $request->session()->get('mensagem');
 
-        return  view('series.index')->with(compact('series'));
+        return  view('series.index')->with(compact('series', 'mensagem'));
     }
 
     public function create() {
@@ -19,11 +20,19 @@ class SeriesController extends Controller {
     }
 
     public function store(HttpRequest $request) {
-        $nome = $request->nome;
-        
         $serie = Serie::create($request->all());
 
-        echo "Série com o id {$serie->id} criada: {$serie->nome}";
+        $request->session()->flash("mensagem", "Série com o id {$serie->id} adicionada: {$serie->nome}");
+
+        return redirect('/series');
+    }
+
+    public function destroy(HttpRequest $request) {    
+        Serie::destroy($request->id);
+
+        $request->session()->flash("mensagem", "Série removida!");
+
+        return redirect('series');
     }
 
 }
