@@ -1,4 +1,4 @@
-@extends('series.layout')
+@extends('layout')
 
 @section('cabecalho')
     Adicionar Série

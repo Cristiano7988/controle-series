@@ -1,4 +1,4 @@
-@extends('series.layout')
+@extends('layout')
 
 @section('cabecalho')
 Séries
@@ -13,6 +13,7 @@ Séries
         @foreach ($series as $serie)
         <li>
             {{ $serie->nome }}
+            <a href="/series/{{ $serie->id }}/temporadas">Temporadas</a>
             <form method="post" action="series/remover/{{ $serie->id }}" onsubmit="return confirm('Tem certeza?')">
                 @csrf
                 <button type="submit">Excluir</button>
