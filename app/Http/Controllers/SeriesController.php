@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SeriesFormRequest;
 use App\Serie;
 use App\Services\CriadorDeSerie;
+use App\Services\RemovedorDeSerie;
 use Illuminate\Http\Request as HttpRequest;
 
 class SeriesController extends Controller {
@@ -29,10 +30,10 @@ class SeriesController extends Controller {
         return redirect()->route('listar_series');
     }
 
-    public function destroy(HttpRequest $request) {    
-        Serie::destroy($request->id);
+    public function destroy(HttpRequest $request, RemovedorDeSerie $removedorDeSerie) {    
+        $nomeSerie = $removedorDeSerie->removerSerie($request->id);
 
-        $request->session()->flash("mensagem", "Série removida!");
+        $request->session()->flash("mensagem", "Série {$nomeSerie} removida!");
 
         return redirect()->route('listar_series');
     }
