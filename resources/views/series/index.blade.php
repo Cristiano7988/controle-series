@@ -24,10 +24,10 @@ Séries
                     </div>
                 </div>
             </div>
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
                 <button class="btn btn-primary mr-2" onclick="toggleInput({{ $serie->id }})"><i class="fas fa-edit"></i></button>
                 <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-secondary">Temporadas</a>
-                <form method="post" action="series/remover/{{ $serie->id }}" onsubmit="return confirm('Tem certeza?')">
+                <form class="m-auto" method="post" action="series/remover/{{ $serie->id }}" onsubmit="return confirm('Tem certeza?')">
                     @csrf
                     <button class="btn btn-danger ml-2" type="submit"><i class="far fa-trash-alt"></i></button>
                 </form>
