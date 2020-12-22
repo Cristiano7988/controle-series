@@ -53,4 +53,22 @@ Séries
             inputEl.hidden = true
         );
     }
+
+    function editarSerie(serieId) {
+        const nome = document.querySelector(`#input-nome-serie-${serieId} > input`).value;
+        const url = `/series/${serieId}/edita`;
+        const token = document.querySelector('input[name=_token]').value;
+        const formData = new FormData();
+
+        formData.append('nome', nome);
+        formData.append('_token', token);
+
+        fetch(url, {
+            body: formData,
+            method: 'Post'
+        }).then((r)=> {
+            toggleInput(serieId);
+            document.querySelector(`#nome-serie-${serieId}`).innerHTML = nome;
+        })
+    }
 </script>
