@@ -17,4 +17,5 @@ Temporadas de {{$serie->nome}}
     </li>
     @endforeach
 </ul>
+<a href="/series" class="btn btn-primary mt-2">Voltar</a>
 @endsection

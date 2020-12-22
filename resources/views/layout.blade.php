@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid d-flex justify-content-between">
+            <a class="navbar-brand" href="{{ route('listar_series') }}">Séries</a>
+            <a class="navbar-brand text-danger" href="/sair">Sair</a>
+        </div>
+    </nav>
     <section>
         <div class="jumbotron">
             <div class="container">

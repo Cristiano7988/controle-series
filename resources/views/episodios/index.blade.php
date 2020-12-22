@@ -20,6 +20,7 @@ Episódios da temporada {{ $temporada->numero }}
         </li>
         @endforeach
     </ul>
-    <button type="submit" class="btn btn-primary mt-2">Salvar</button>
+    <a href="/series" class="btn btn-primary mt-2">Voltar</a>
+    <button type="submit" class="btn btn-outline-primary mt-2">Salvar</button>
 </form>
 @endsection

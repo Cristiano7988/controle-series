@@ -4,6 +4,7 @@ use App\Http\Controllers\EpisodiosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\TemporadasController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,8 @@ Route::post('/temporadas/{temporada}/episodios/assistir', [EpisodiosController::
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/sair', function() {
+    Auth::logout();
+    return redirect('/login');
+});
