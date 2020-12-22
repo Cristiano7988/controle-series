@@ -5,11 +5,9 @@ Séries
 @endsection
 
 @section('conteudo')
-@if(!empty($mensagem))
-<div class="alert alert-success">
-    {{ $mensagem }}
-</div>
-@endif
+
+@include('mensagem', compact('mensagem'))
+
 <a href="/series/criar" class="btn btn-primary mb-2">Adicionar</a>
 <ul class="list-group">
     @foreach ($series as $serie)
