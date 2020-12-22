@@ -10,6 +10,10 @@ use Illuminate\Http\Request as HttpRequest;
 
 class SeriesController extends Controller {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index(HttpRequest $request) {
         $series = Serie::query()->orderBy('nome')->get();

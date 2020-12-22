@@ -35,3 +35,6 @@ Route::post('/series/{id}/edita', [SeriesController::class, 'editaNome']);
 Route::get('/temporadas/{temporada}/episodios', [EpisodiosController::class, 'index']);
 
 Route::post('/temporadas/{temporada}/episodios/assistir', [EpisodiosController::class, 'assistir']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
