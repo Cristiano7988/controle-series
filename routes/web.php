@@ -4,7 +4,9 @@ use App\Http\Controllers\EpisodiosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\TemporadasController;
+use App\Mail\NovaSerie;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +45,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/sair', function() {
     Auth::logout();
     return redirect('/login');
+});
+
+Route::get('/visualizando-email', function() {
+    return new NovaSerie('Arrow', 10, 5);
 });
