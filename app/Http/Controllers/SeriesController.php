@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NovaSerie as EventsNovaSerie;
 use App\Http\Requests\SeriesFormRequest;
 use App\Mail\NovaSerie;
 use App\Serie;
@@ -29,16 +30,12 @@ class SeriesController extends Controller {
         return view('series.create');
     }
 
-    public function store(SeriesFormRequest $request, CriadorDeSerie $criadorDeSerie) {
+    public function store(SeriesFormRequest $request, CriadorDeSerie $criadorDeSerie) {        
         // Envia email
-        $users = User::all();
-        foreach($users as $index => $user) {
-            $multiplicador = $index + 1;
-            $when = now()->addSecond($multiplicador * 5);
-            $email = new NovaSerie($request->nome, $request->qtd_temporadas, $request->ep_por_temporada);
-            $email->subject('Nova série adicionada');
-            Mail::to($user)->later($when, $email);
-        }
+        $eventoNovaSerie = new EventsNovaSerie($request->nome, $request->qtd_temporadas, $request->ep_por_temporada);
+        event($eventoNovaSerie);
+
+
 
         // Armazena série
         $serie = $criadorDeSerie->criarSerie($request->nome, $request->qtd_temporadas, $request->ep_por_temporada);
