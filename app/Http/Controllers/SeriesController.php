@@ -30,15 +30,18 @@ class SeriesController extends Controller {
         return view('series.create');
     }
 
-    public function store(SeriesFormRequest $request, CriadorDeSerie $criadorDeSerie) {        
+    public function store(SeriesFormRequest $request, CriadorDeSerie $criadorDeSerie) {
         // Envia email
         $eventoNovaSerie = new EventsNovaSerie($request->nome, $request->qtd_temporadas, $request->ep_por_temporada);
         event($eventoNovaSerie);
-
-
-
+        
         // Armazena série
-        $serie = $criadorDeSerie->criarSerie($request->nome, $request->qtd_temporadas, $request->ep_por_temporada);
+        $capa = null;
+        if($request->hasFile('capa')) {
+            $capa = $request->file('capa')->store('serie');
+        }
+
+        $serie = $criadorDeSerie->criarSerie($request->nome, $request->qtd_temporadas, $request->ep_por_temporada, $capa);
 
         $request->session()->flash("mensagem", "Série com o id {$serie->id} e suas temporadas e episódios adicionados: {$serie->nome}");
 

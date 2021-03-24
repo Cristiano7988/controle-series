@@ -10,10 +10,11 @@ class CriadorDeSerie
     public function criarSerie(
         string $nomeSerie,
         int $qtdTemporadas,
-        int $ep_por_temporada
+        int $ep_por_temporada,
+        ?string $capa
     ): Serie {
         DB::beginTransaction();
-        $serie = Serie::create(['nome' => $nomeSerie]);
+        $serie = Serie::create(['nome' => $nomeSerie, 'capa' => $capa]);
         $this->criarTemporadas($ep_por_temporada, $qtdTemporadas, $serie);
         DB::commit();
 
