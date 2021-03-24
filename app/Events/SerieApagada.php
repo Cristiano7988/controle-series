@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\Serie;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -22,7 +21,7 @@ class SerieApagada
      *
      * @return void
      */
-    public function __construct(Serie $serie)
+    public function __construct(object $serie)
     {
         $this->serie = $serie;
     }
