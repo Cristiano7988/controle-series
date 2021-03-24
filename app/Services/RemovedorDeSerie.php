@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Events\SerieApagada;
+use App\Jobs\ExcluirCapaSerie;
 use App\Models\{Temporada, Episodio};
 use App\Serie;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,7 @@ class RemovedorDeSerie
             // Exclui o arquivo
             $evento = new SerieApagada($serieObj);
             event($evento);
+            ExcluirCapaSerie::dispatch($serieObj);
         });
         return $nomeSerie;
     }
